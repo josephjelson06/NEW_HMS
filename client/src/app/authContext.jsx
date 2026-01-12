@@ -16,6 +16,12 @@ export const AuthProvider = ({ children }) => {
         return data;
     };
 
+    // Helper to directly set auth data (for registration, token refresh, etc.)
+    const setAuthData = (data) => {
+        setAuth(data);
+        localStorage.setItem("auth", JSON.stringify(data));
+    };
+
     const logout = () => {
         setAuth(null);
         localStorage.removeItem("auth");
@@ -29,6 +35,7 @@ export const AuthProvider = ({ children }) => {
                 token: auth?.token,
                 isAuthenticated: !!auth,
                 login,
+                setAuthData,
                 logout,
             }}
         >
@@ -38,3 +45,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+

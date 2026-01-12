@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../modules/auth/Login";
+import Register from "../modules/auth/Register";
 import SuperAdminHome from "../modules/superadmin/SuperAdminHome";
 import HotelAdminHome from "../modules/hotelAdmin/HotelAdminHome";
 import ProtectedRoute from "./ProtectedRoute";
@@ -7,6 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 const Router = () => (
     <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route
             path="/superadmin"
