@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../app/authContext";
 import { getRedirectPath } from "../../utils/authRedirect";
 
 const Login = () => {
-    const { login } = useAuth();
+    const { login, isAuthenticated, user } = useAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    // Redirect if already authenticated
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            navigate(getRedirectPath(user), { replace: true });
+        }
+    }, [isAuthenticated, user, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,13 +25,18 @@ const Login = () => {
 
         try {
             const data = await login(email, password);
-            navigate(getRedirectPath(data.user));
+            navigate(getRedirectPath(data.user), { replace: true });
         } catch (err) {
             setError(err.response?.data?.message || "Login failed");
         } finally {
             setLoading(false);
         }
     };
+
+    // Don't render login form if authenticated
+    if (isAuthenticated) {
+        return null;
+    }
 
     return (
         <div style={{ maxWidth: 400, margin: "100px auto", padding: 24 }}>
@@ -64,3 +76,4 @@ const Login = () => {
 };
 
 export default Login;
+
