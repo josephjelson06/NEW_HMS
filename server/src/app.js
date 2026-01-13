@@ -1,6 +1,8 @@
 import express from "express";
 import authRouter from "./routers/auth/auth.router.js";
 import swaggerRouter from "./routers/swagger/swagger.router.js";
+import hotelDashboardRouter from "./routers/hotel/dashboardRouter.js";
+
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.get("/health", (req, res) => {
 
 /* ---------- Routes ---------- */
 app.use("/api/auth", authRouter);
-
+app.use("/api/hotel", hotelDashboardRouter);
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
     res.status(404).json({ message: "Route not found" });
