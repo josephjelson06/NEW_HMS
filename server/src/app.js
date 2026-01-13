@@ -3,8 +3,7 @@ import authRouter from "./routers/auth/auth.router.js";
 import swaggerRouter from "./routers/swagger/swagger.router.js";
 import hotelDashboardRouter from "./routers/hotel/dashboardRouter.js";
 import superAdminDashboardRouter from "./routers/superadmin/dashboardRouter.js";
-
-
+import roomCategoryRouter from "./routers/hotel/roomCategoryRouter.js";
 
 const app = express();
 
@@ -24,6 +23,7 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/hotel", hotelDashboardRouter);
 app.use("/api/superadmin", superAdminDashboardRouter);
+app.use("/api/hotel", roomCategoryRouter);
 
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
