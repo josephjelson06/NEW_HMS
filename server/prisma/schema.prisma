@@ -20,6 +20,7 @@ model Hotel {
   users          User[]
   roomCategories RoomCategory[]
   rooms          Room[]
+  guests         Guest[]
 }
 
 model User {
@@ -61,4 +62,20 @@ model Room {
   category RoomCategory @relation(fields: [categoryId], references: [id])
 
   @@unique([hotelId, roomNumber])
+}
+
+model Guest {
+  id        String   @id @default(uuid())
+  hotelId   Int
+  firstName String
+  lastName  String
+  email     String?
+  phone     String
+  idType    String?
+  idNumber  String?
+  createdAt DateTime @default(now())
+
+  hotel Hotel @relation(fields: [hotelId], references: [id])
+
+  @@unique([hotelId, phone])
 }
