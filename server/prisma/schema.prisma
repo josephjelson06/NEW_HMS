@@ -14,10 +14,12 @@ model Role {
 }
 
 model Hotel {
-  id    Int    @id @default(autoincrement())
-  name  String
-  slug  String @unique
-  users User[]
+  id             Int            @id @default(autoincrement())
+  name           String
+  slug           String         @unique
+  users          User[]
+  roomCategories RoomCategory[]
+  rooms          Room[]
 }
 
 model User {
@@ -29,4 +31,34 @@ model User {
   roleId       Int
   hotel        Hotel?  @relation(fields: [hotelId], references: [id])
   hotelId      Int?
+}
+
+model RoomCategory {
+  id        String   @id @default(uuid())
+  hotelId   Int
+  name      String
+  basePrice Int
+  capacity  Int
+  amenities String?
+  createdAt DateTime @default(now())
+
+  hotel Hotel  @relation(fields: [hotelId], references: [id])
+  rooms Room[]
+
+  @@unique([hotelId, name])
+}
+
+model Room {
+  id         String     @id @default(uuid())
+  hotelId    Int
+  categoryId String
+  roomNumber String
+  floor      String?
+  status     String     @default("AVAILABLE")
+  createdAt  DateTime   @default(now())
+
+  hotel    Hotel        @relation(fields: [hotelId], references: [id])
+  category RoomCategory @relation(fields: [categoryId], references: [id])
+
+  @@unique([hotelId, roomNumber])
 }
