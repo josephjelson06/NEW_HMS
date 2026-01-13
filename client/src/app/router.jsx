@@ -6,6 +6,7 @@ import HotelAdminHome from "../modules/hotelAdmin/HotelAdminHome";
 import RoomCategoryPage from "../modules/hotelAdmin/roomCategories/roomCategoryPage";
 import RoomsPage from "../modules/hotelAdmin/rooms/RoomsPage";
 import GuestsPage from "../modules/hotelAdmin/guests/GuestsPage";
+import BookingsPage from "../modules/hotelAdmin/bookings/bookingsPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const Router = () => (
@@ -57,7 +58,17 @@ const Router = () => (
                 </ProtectedRoute>
             }
         />
+
+        <Route
+            path="/admin/:hotelSlug/bookings"
+            element={
+                <ProtectedRoute>
+                    <BookingsPage />
+                </ProtectedRoute>
+            }
+        />
     </Routes>
 );
 
 export default Router;
+
