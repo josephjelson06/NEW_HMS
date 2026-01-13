@@ -4,6 +4,9 @@ import swaggerRouter from "./routers/swagger/swagger.router.js";
 import hotelDashboardRouter from "./routers/hotel/dashboardRouter.js";
 import superAdminDashboardRouter from "./routers/superadmin/dashboardRouter.js";
 import roomCategoryRouter from "./routers/hotel/roomCategoryRouter.js";
+import roomRouter from "./routers/hotel/roomRouter.js";
+
+
 
 const app = express();
 
@@ -24,6 +27,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/hotel", hotelDashboardRouter);
 app.use("/api/superadmin", superAdminDashboardRouter);
 app.use("/api/hotel", roomCategoryRouter);
+app.use("/api/hotel", roomRouter);
 
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
