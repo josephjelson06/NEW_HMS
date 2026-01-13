@@ -5,6 +5,9 @@ import hotelDashboardRouter from "./routers/hotel/dashboardRouter.js";
 import superAdminDashboardRouter from "./routers/superadmin/dashboardRouter.js";
 import roomCategoryRouter from "./routers/hotel/roomCategoryRouter.js";
 import roomRouter from "./routers/hotel/roomRouter.js";
+import guestRouter from "./routers/hotel/guestRouter.js";
+
+
 
 
 
@@ -28,6 +31,7 @@ app.use("/api/hotel", hotelDashboardRouter);
 app.use("/api/superadmin", superAdminDashboardRouter);
 app.use("/api/hotel", roomCategoryRouter);
 app.use("/api/hotel", roomRouter);
+app.use("/api/hotel", guestRouter);
 
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
