@@ -21,6 +21,7 @@ model Hotel {
   roomCategories RoomCategory[]
   rooms          Room[]
   guests         Guest[]
+  bookings       Booking[]
 }
 
 model User {
@@ -60,6 +61,7 @@ model Room {
 
   hotel    Hotel        @relation(fields: [hotelId], references: [id])
   category RoomCategory @relation(fields: [categoryId], references: [id])
+  bookings Booking[]
 
   @@unique([hotelId, roomNumber])
 }
@@ -75,7 +77,24 @@ model Guest {
   idNumber  String?
   createdAt DateTime @default(now())
 
-  hotel Hotel @relation(fields: [hotelId], references: [id])
+  hotel    Hotel     @relation(fields: [hotelId], references: [id])
+  bookings Booking[]
 
   @@unique([hotelId, phone])
+}
+
+
+model Booking {
+  id        String   @id @default(uuid())
+  hotelId   Int
+  guestId   String
+  roomId    String
+  checkIn   DateTime
+  checkOut  DateTime
+  status    String   @default("BOOKED")
+  createdAt DateTime @default(now())
+
+  hotel Hotel @relation(fields: [hotelId], references: [id])
+  guest Guest @relation(fields: [guestId], references: [id])
+  room  Room  @relation(fields: [roomId], references: [id])
 }

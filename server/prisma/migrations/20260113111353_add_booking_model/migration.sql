@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE "Booking" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "hotelId" INTEGER NOT NULL,
+    "guestId" TEXT NOT NULL,
+    "roomId" TEXT NOT NULL,
+    "checkIn" DATETIME NOT NULL,
+    "checkOut" DATETIME NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'BOOKED',
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "Booking_hotelId_fkey" FOREIGN KEY ("hotelId") REFERENCES "Hotel" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Booking_guestId_fkey" FOREIGN KEY ("guestId") REFERENCES "Guest" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Booking_roomId_fkey" FOREIGN KEY ("roomId") REFERENCES "Room" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
