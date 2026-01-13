@@ -6,6 +6,8 @@ import superAdminDashboardRouter from "./routers/superadmin/dashboardRouter.js";
 import roomCategoryRouter from "./routers/hotel/roomCategoryRouter.js";
 import roomRouter from "./routers/hotel/roomRouter.js";
 import guestRouter from "./routers/hotel/guestRouter.js";
+import bookingRouter from "./routers/hotel/bookingRouter.js";
+
 
 
 
@@ -32,6 +34,7 @@ app.use("/api/superadmin", superAdminDashboardRouter);
 app.use("/api/hotel", roomCategoryRouter);
 app.use("/api/hotel", roomRouter);
 app.use("/api/hotel", guestRouter);
+app.use("/api/hotel", bookingRouter);
 
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
