@@ -7,6 +7,8 @@ import roomCategoryRouter from "./routers/hotel/roomCategoryRouter.js";
 import roomRouter from "./routers/hotel/roomRouter.js";
 import guestRouter from "./routers/hotel/guestRouter.js";
 import bookingRouter from "./routers/hotel/bookingRouter.js";
+import bookingStatusRouter from "./routers/hotel/bookingStatusRouter.js";
+
 
 
 
@@ -35,6 +37,7 @@ app.use("/api/hotel", roomCategoryRouter);
 app.use("/api/hotel", roomRouter);
 app.use("/api/hotel", guestRouter);
 app.use("/api/hotel", bookingRouter);
+app.use("/api/hotel", bookingStatusRouter);
 
 /* ---------- Fallback ---------- */
 app.use((req, res) => {
