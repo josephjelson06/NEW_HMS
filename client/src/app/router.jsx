@@ -5,6 +5,7 @@ import SuperAdminHome from "../modules/superadmin/SuperAdminHome";
 import HotelAdminHome from "../modules/hotelAdmin/HotelAdminHome";
 import RoomCategoryPage from "../modules/hotelAdmin/roomCategories/roomCategoryPage";
 import RoomsPage from "../modules/hotelAdmin/rooms/RoomsPage";
+import GuestsPage from "../modules/hotelAdmin/guests/GuestsPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const Router = () => (
@@ -47,8 +48,16 @@ const Router = () => (
                 </ProtectedRoute>
             }
         />
+
+        <Route
+            path="/admin/:hotelSlug/guests"
+            element={
+                <ProtectedRoute>
+                    <GuestsPage />
+                </ProtectedRoute>
+            }
+        />
     </Routes>
 );
 
 export default Router;
-
